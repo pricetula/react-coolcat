@@ -1,0 +1,24 @@
+{
+  "name": "react-coolcat",
+  "version": "1.0.0",
+  "description": "React, GraphQl, Redux & Redux-saga example",
+  "main": "src/client/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pricetula/react-coolcat.git"
+  },
+  "keywords": [
+    "React",
+    "Redux",
+    "example"
+  ],
+  "author": "Price Tula K",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pricetula/react-coolcat/issues"
+  },
+  "homepage": "https://github.com/pricetula/react-coolcat#readme"
+}
