@@ -2,5 +2,5 @@ import React from 'react';
 
 export default function (
 ) {
-  return <h2>Todo</h2>;
+  return <h2>Todo Page</h2>;
 }

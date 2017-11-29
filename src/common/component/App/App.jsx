@@ -13,7 +13,7 @@ function App(
     <div>
       <h1>Welcome</h1>
 
-      <Link to="/simple">Simple</Link>
+      <Link to="/counter">Counter</Link>
       <Link to="/todo">Todo</Link>
       <Link to="/">Home</Link>
 

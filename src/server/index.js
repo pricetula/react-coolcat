@@ -5,11 +5,14 @@ import winston from 'winston';
 // import stringify from 'json-stringify-safe';
 import axios from 'axios';
 import React from 'react';
+import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import express from 'express';
 import cors from 'cors';
-import appComponent from '../common/component/app';
+import sagaServerPort from '../common/redux/sagaServerPort';
+import App from '../common/component/App';
+import combinedSagas from '../common/sagas';
 
 function renderHTML(
   component,
@@ -18,16 +21,11 @@ function renderHTML(
   return `
     <!doctype html>
     <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-      </head>
       <body>
         <div id="react-root">${component}</div>
         <script>
-          window.__PRELOADED_STATE__=${JSON.stringify(data).replace(/</g, '\\u003c')}
+          window.__PRELOADEDSTATE__=${JSON.stringify(data).replace(/</g, '\\u003c')}
         </script>
-        <script src="bundle.js" defer></script>
       </body>
     </html>
   `;
@@ -54,46 +52,53 @@ const url = `http://localhost:${port}`;
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
 app.get(
-  '/',
+  '*',
   (
     req,
     res,
   ) => {
-    axios.get(
-      '/posts',
+    const store = sagaServerPort(
+    );
+
+    const Component = (
+      <Provider store={store}>
+        <StaticRouter location={req.url} context={{}}>
+          <App />
+        </StaticRouter>
+      </Provider>
+    );
+
+    const renderedHtml = () => renderHTML(
+      renderToString(
+        // passing state through props not sure here
+        Component,
+      ),
+      // Pass object data to preloaded state so that it will be available to component
+      Object.assign(
+        {},
+        store.getState(),
+        { appState: [] },
+      ),
+    );
+
+    store.runSaga(
+      combinedSagas,
     )
+      .done
       .then(
-        (
-          response,
-        ) => {
+        () => {
           res.status(
             200,
           ).send(
-            renderHTML(
-              renderToString(
-                // passing state through props not sure here
-                <StaticRouter location={req.url} context={{}}>
-                  {
-                    appComponent(
-                    )
-                  }
-                </StaticRouter>,
-              ),
-              // Pass object data to preloaded state so that it will be available to component
-              { appState: response.data },
-            ),
+            renderedHtml(),
           );
         },
-      )
-      .catch(
-        (
-          error,
-        ) => {
-          winston.error(
-            error,
-          );
-        },
-      );
+      ).catch((e) => {
+        res.status(500).send(e.message);
+      });
+
+    renderedHtml();
+    store.close();
   },
 );
 
@@ -102,5 +107,5 @@ app.listen(
 );
 
 winston.info(
-  `Server listening on ${url}`,
+  `🌎 >>> Server listening on ${url}`,
 );

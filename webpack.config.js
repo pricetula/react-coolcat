@@ -17,6 +17,14 @@ const paths = {
     __dirname,
     'dist'
   ),
+  clientEntry: path.resolve(
+    __dirname,
+    'src/client/index.js'
+  ),
+  serverEntry: path.resolve(
+    __dirname,
+    'src/server/index.js'
+  ),
   client: path.resolve(
     __dirname,
     'src/client'
@@ -29,14 +37,14 @@ const paths = {
 
 // Webpack configuration
 const clientConfig = {
-  entry: path.join(
-    paths.client,
-    'index.js'
-  ),
+  entry: [
+    'babel-polyfill',
+    paths.clientEntry
+  ],
 
   // output of build and bundle.js as build output
   output: {
-    path: `${paths.dist}/public`,
+    path: paths.dist,
     filename: 'bundle.js'
   },
 
@@ -80,6 +88,7 @@ const clientConfig = {
 
   // this will generate a file dist/index.html
   plugins: [
+    /* Please create another config for client dev to include this plugin
     new HtmlWebpackPlugin(
       {
         title: 'Cool Cat Dev',
@@ -90,6 +99,7 @@ const clientConfig = {
         ) // merge our index.html with the plugin one
       }
     ),
+    */
     new ExtractTextPlugin(
       'style.css'
     ) // all styles will be bundled to dist by plugin
@@ -97,10 +107,10 @@ const clientConfig = {
 };
 
 const serverConfig = {
-  entry: path.join(
-    paths.server,
-    'index.js'
-  ),
+  entry: [
+    'babel-polyfill',
+    paths.serverEntry
+  ],
 
   // output of build and bundle.js as build output
   output: {

@@ -2,6 +2,7 @@ import App from '../component/App';
 import Home from '../component/Home';
 import Todo from '../component/Todo';
 import Simple from '../component/Simple';
+import Counter from '../component/Counter';
 
 const routes = [
   {
@@ -19,6 +20,10 @@ const routes = [
       {
         path: '/simple',
         component: Simple,
+      },
+      {
+        path: '/counter',
+        component: Counter,
       },
     ],
   },
