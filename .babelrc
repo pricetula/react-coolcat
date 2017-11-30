@@ -4,5 +4,8 @@
     "react",
     "es2015"
   ],
-  "plugins": ["transform-regenerator"]
+  "plugins": [
+    "transform-regenerator",
+    "transform-runtime"
+  ]
 }
