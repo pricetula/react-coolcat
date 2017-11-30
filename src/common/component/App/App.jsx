@@ -9,6 +9,10 @@ function App(
     route,
   },
 ) {
+  if (!route) {
+    return <div />;
+  }
+
   return (
     <div>
       <h1>Welcome</h1>
