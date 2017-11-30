@@ -6,6 +6,7 @@
   ],
   "plugins": [
     "transform-regenerator",
-    "transform-runtime"
+    "transform-runtime",
+    "syntax-dynamic-import"
   ]
 }
