@@ -97,6 +97,7 @@ app.get(
         res.status(500).send(e.message);
       });
 
+    // NOTE Read more on why we need to render the saga twice one server to make it work
     renderedHtml();
     store.close();
   },
