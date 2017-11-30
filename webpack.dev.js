@@ -13,18 +13,22 @@ module.exports = merge(
   webpackClient,
   {
     devtool: 'inline-source-map',
+
     devServer: {
       contentBase: './dist'
     },
+
     plugins: [
       new CleanWebpackPlugin(
-        ['dist'],
+        [
+          'dist'
+        ],
         {
           exclude: [
-            'index.html',
+            'index.html'
           ]
         }
-      ),
+      )
     ]
   }
 );

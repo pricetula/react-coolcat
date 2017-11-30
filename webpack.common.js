@@ -1,32 +1,20 @@
-// running dev will cause webpack to look for this config file.
-// dev is running with --hot for hot module replacement
 /* eslint-disable comma-dangle, import/no-extraneous-dependencies */
-const webpack = require(
-  'webpack'
-);
 const path = require(
   'path'
 );
+
 const ExtractTextPlugin = require(
   'extract-text-webpack-plugin'
 );
 
-// Webpack configuration
 module.exports = {
-  // entry file for our apps code
   entry: {
     bundle: path.resolve(
       __dirname,
       'src/client/index.js'
     ),
-    // create a new entry file containing our app dependencies
-    vendor: [
-      'react',
-      'react-dom',
-      'react-router-dom'
-    ]
   },
-  // output of server.js and bundle.js as build output (name in property of entry)
+
   output: {
     path: path.resolve(
       __dirname,
@@ -39,18 +27,17 @@ module.exports = {
     fs: 'empty'
   },
 
-  // loaders for js or jsx files to be parsed by babel
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, // find both js or jsx files
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         include: path.resolve(
           __dirname,
           'src'
         ),
         use: [
-          'babel-loader' // using babel loader
+          'babel-loader'
         ]
       },
 
@@ -82,20 +69,16 @@ module.exports = {
     ]
   },
 
-  // resolve js or jsx files to be loaded by babel
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [
+      '.js',
+      '.jsx'
+    ]
   },
 
   plugins: [
     new ExtractTextPlugin(
       'style.css'
-    ),
-    new webpack.optimize.CommonsChunkPlugin(
-      {
-        name: 'vendor',
-        minChunks: Infinity,
-      }
     ),
   ]
 };
