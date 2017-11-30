@@ -6,10 +6,9 @@
   "scripts": {
     "getchart": "webpack --config webpack.prod.js --profile --json > stats.json",
     "build:prod": "webpack --config webpack.prod.js -p",
-    "build:dev": "babel-node ./src/server/index.js && webpack --config webpack.dev.js",
     "start:client:dev": "webpack-dev-server --config webpack.dev.js",
-    "start:server:dev": "NODE_ENV=development node ./dist/bundle.js",
-    "build:start:server:dev": "npm run build:dev && npm run start:server:dev"
+    "start:server:dev": "NODE_ENV=development node ./dist/bundle.server.js",
+    "build:start:server:dev": "npm run build:prod && npm run start:server:dev"
   },
   "repository": {
     "type": "git",
@@ -33,6 +32,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "json-stringify-safe": "^5.0.1",
+    "loadable-components": "^0.4.0",
     "lodash": "^4.17.4",
     "path": "^0.12.7",
     "prop-types": "^15.6.0",
@@ -52,6 +52,7 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
@@ -69,7 +70,6 @@
     "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
-    "loadable-components": "^0.4.0",
     "nodemon": "^1.12.1",
     "parallelshell": "^3.0.2",
     "webpack": "^3.8.1",
