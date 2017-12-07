@@ -2,7 +2,17 @@
 const path = require(
   'path'
 );
-
+const HtmlWebpackPlugin = require(
+  'html-webpack-plugin'
+);
+const {
+  BundleAnalyzerPlugin
+} = require(
+  'webpack-bundle-analyzer'
+);
+const webpack = require(
+  'webpack'
+);
 const ExtractTextPlugin = require(
   'extract-text-webpack-plugin'
 );
@@ -13,6 +23,11 @@ module.exports = {
       __dirname,
       'src/client/index.js'
     ),
+    vendor: [
+      'react',
+      'react-router',
+      'react-dom'
+    ]
   },
 
   output: {
@@ -77,8 +92,33 @@ module.exports = {
   },
 
   plugins: [
+    new HtmlWebpackPlugin(
+      {
+        cache: true,
+        favicon: path.resolve(
+          __dirname,
+          'dist/assets/icon.ico'
+        ),
+        chunks: [
+          'common',
+          'bundle'
+        ],
+        template: './html-template.html'
+      }
+    ),
+    new webpack.optimize.CommonsChunkPlugin(
+      {
+        name: 'common',
+        chunks: [
+          'vendor',
+          'bundle'
+        ]
+      }
+    ),
+    new BundleAnalyzerPlugin(
+    ),
     new ExtractTextPlugin(
       'style.css'
-    ),
+    )
   ]
 };

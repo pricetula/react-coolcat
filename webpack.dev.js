@@ -2,6 +2,9 @@
 const CleanWebpackPlugin = require(
   'clean-webpack-plugin'
 );
+const path = require(
+  'path'
+);
 const merge = require(
   'webpack-merge'
 );
@@ -15,7 +18,10 @@ module.exports = merge(
     devtool: 'inline-source-map',
 
     devServer: {
-      contentBase: './dist'
+      contentBase: path.resolve(
+        __dirname,
+        'dist'
+      )
     },
 
     plugins: [
@@ -25,7 +31,7 @@ module.exports = merge(
         ],
         {
           exclude: [
-            'index.html'
+            'assets',
           ]
         }
       )

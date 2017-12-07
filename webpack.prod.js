@@ -2,19 +2,15 @@
 const CleanWebpackPlugin = require(
   'clean-webpack-plugin'
 );
-
 const path = require(
   'path'
 );
-
 const merge = require(
   'webpack-merge'
 );
-
 const UglifyJSPlugin = require(
   'uglifyjs-webpack-plugin'
 );
-
 const webpackServer = require(
   './webpack.common'
 );
@@ -69,6 +65,7 @@ module.exports = [
           ],
           {
             exclude: [
+              'assets',
               'index.html',
               'bundle.js'
             ]
