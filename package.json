@@ -5,7 +5,7 @@
   "main": "src/client/index.js",
   "scripts": {
     "getchart": "webpack --config webpack.prod.js --profile --json > stats.json",
-    "start:client:dev": "webpack-dev-server --config webpack.dev.js --config webpack.dev.js",
+    "start:client:dev": "webpack-dev-server --config webpack.dev.js",
     "start:server:dev": "NODE_ENV=development nodemon --exec ./node_modules/.bin/babel-node --watch src -- src/server/index.js",
     "build:prod": "webpack --config webpack.prod.js -p",
     "start:server:prod": "NODE_ENV=production node ./dist/server.js",
