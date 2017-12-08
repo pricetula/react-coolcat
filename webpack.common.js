@@ -29,12 +29,15 @@ module.exports = {
     bundle: path.resolve(
       __dirname,
       'src/client/index.js'
-    ),
-    // Commonly used packages bundled to another file to reduce bundle.js file size
+    ), 
+
     vendor: [
       'react',
+      'loadable-components',
+      'lodash',
+      'prop-types',
+      'react-redux',
       'react-router',
-      'react-dom'
     ]
   },
 
@@ -134,13 +137,15 @@ module.exports = {
     ),
     new webpack.optimize.CommonsChunkPlugin(
       {
-        names: [
-          'vendor',
-          'bundle'
-        ]
+        // BUNDLE SPLITTING
+        // Commonly used packages are extracted from bundle.js and moved to vendor
+        names: 'vendor',
+        minChunks: Infinity
       }
     ),
-    new HashOutput(
+    new webpack.NamedChunksPlugin(
+    ),
+    new webpack.NamedModulesPlugin(
     ),
     new BundleAnalyzerPlugin(
       {
