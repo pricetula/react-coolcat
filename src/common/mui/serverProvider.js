@@ -3,26 +3,15 @@ import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { MuiThemeProvider } from 'material-ui/styles';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
-import { green, red } from 'material-ui/colors';
+import theme from './theme';
 
 export default function (
   App,
 ) {
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry(
-  );
-
-  // Create a theme instance.
-  const theme = createMuiTheme(
-    {
-      palette: {
-        primary: green,
-        accent: red,
-        type: 'light',
-      },
-    },
   );
 
   // Configure JSS
