@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'material-ui/Button';
 
 function ComponentCounter(
   {
@@ -19,7 +20,9 @@ function ComponentCounter(
 
       Counter: <b>{counter}</b> <br />
 
-      <button
+      <Button
+        raised
+        color="primary"
         onClick={
           (
           ) => {
@@ -32,9 +35,11 @@ function ComponentCounter(
         }
       >
         Increase Count
-      </button>
+      </Button>
 
-      <button
+      <Button
+        raised
+        color="red"
         onClick={
           (
           ) => {
@@ -47,9 +52,11 @@ function ComponentCounter(
         }
       >
         Reset Count
-      </button>
+      </Button>
 
-      <button
+      <Button
+        raised
+        color="secondary"
         onClick={
           (
           ) => {
@@ -62,7 +69,7 @@ function ComponentCounter(
         }
       >
         Decrease Count
-      </button>
+      </Button>
     </div>
   );
 }
