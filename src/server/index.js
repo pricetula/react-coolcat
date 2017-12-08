@@ -1,8 +1,5 @@
 /* eslint-disable function-paren-newline */
 import winston from 'winston';
-// import path from 'path';
-// import toPlainObject from 'lodash/toPlainObject';
-// import stringify from 'json-stringify-safe';
 import axios from 'axios';
 import React from 'react';
 import { Provider } from 'react-redux';
