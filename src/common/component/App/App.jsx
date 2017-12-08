@@ -5,6 +5,8 @@ import React, {
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
+import ComponentNavbar from '../Navbar';
+import ComponentFooter from '../Footer';
 
 class App extends Component {
   componentDidMount(
@@ -34,7 +36,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Welcome</h1>
+        <ComponentNavbar />
 
         <Link to="/counter">Counter</Link>
         <Link to="/todo">Todo</Link>
@@ -45,6 +47,8 @@ class App extends Component {
             route.routes,
           )
         }
+
+        <ComponentFooter />
       </div>
     );
   }

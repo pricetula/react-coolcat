@@ -10,8 +10,8 @@ const styles = theme => (
       flexGrow: 1,
     },
     paper: {
-      backgroundColor: theme.palette.common.white,
-      height: 400,
+      backgroundColor: theme.palette.grey[900],
+      height: 100,
       width: '100%',
     },
   }
