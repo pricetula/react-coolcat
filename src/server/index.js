@@ -10,16 +10,22 @@ import cors from 'cors';
 import sagaServerPort from '../common/redux/sagaServerPort';
 import App from '../common/component/App';
 import combinedSagas from '../common/sagas';
+import muiServerProvider from '../common/mui/serverProvider';
 
 function renderHTML(
   component,
   data,
 ) {
+  const Mui = muiServerProvider(
+    component,
+  );
+
   return `
     <!doctype html>
     <html>
       <body>
-        <div id="react-root">${component}</div>
+        <div id="react-root">${Mui.Component}</div>
+        <style id="jss-server-side">${Mui.css}</style>
         <script>
           window.__PRELOADEDSTATE__=${JSON.stringify(data).replace(/</g, '\\u003c')}
         </script>
