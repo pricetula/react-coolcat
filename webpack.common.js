@@ -38,6 +38,7 @@ module.exports = {
       'prop-types',
       'react-redux',
       'react-router',
+      'material-ui',
     ]
   },
 
