@@ -1,33 +1,53 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 
-function App(
-  {
-    route,
-  },
-) {
-  if (!route) {
-    return <div />;
+class App extends Component {
+  componentDidMount(
+  ) {
+    const jssStyles = document.getElementById(
+      'jss-server-side',
+    );
+    if (
+      jssStyles &&
+      jssStyles.parentNode
+    ) {
+      jssStyles.parentNode.removeChild(
+        jssStyles,
+      );
+    }
   }
 
-  return (
-    <div>
-      <h1>Welcome</h1>
+  render(
+  ) {
+    const {
+      route,
+    } = this.props;
 
-      <Link to="/counter">Counter</Link>
-      <Link to="/todo">Todo</Link>
-      <Link to="/">Home</Link>
+    if (!route) {
+      return <div />;
+    }
 
-      {
-        renderRoutes(
-          route.routes,
-        )
-      }
-    </div>
-  );
+    return (
+      <div>
+        <h1>Welcome</h1>
+
+        <Link to="/counter">Counter</Link>
+        <Link to="/todo">Todo</Link>
+        <Link to="/">Home</Link>
+
+        {
+          renderRoutes(
+            route.routes,
+          )
+        }
+      </div>
+    );
+  }
 }
 
 App.propTypes = {
