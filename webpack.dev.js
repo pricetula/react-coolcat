@@ -1,7 +1,4 @@
 /* eslint-disable comma-dangle, import/no-extraneous-dependencies */
-const CleanWebpackPlugin = require(
-  'clean-webpack-plugin'
-);
 const path = require(
   'path'
 );
@@ -23,18 +20,5 @@ module.exports = merge(
         'dist'
       )
     },
-
-    plugins: [
-      new CleanWebpackPlugin(
-        [
-          'dist'
-        ],
-        {
-          exclude: [
-            'assets',
-          ]
-        }
-      )
-    ]
   }
 );

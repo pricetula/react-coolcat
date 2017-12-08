@@ -1,4 +1,7 @@
 /* eslint-disable comma-dangle, import/no-extraneous-dependencies */
+const webpack = require(
+  'webpack'
+);
 const CleanWebpackPlugin = require(
   'clean-webpack-plugin'
 );
@@ -8,6 +11,7 @@ const path = require(
 const merge = require(
   'webpack-merge'
 );
+// Tree shaking to remove dead code or unimported modules
 const UglifyJSPlugin = require(
   'uglifyjs-webpack-plugin'
 );
@@ -17,16 +21,21 @@ const webpackServer = require(
 
 const production = merge(
   webpackServer,
-
   {
-    devtool: 'source-map',
-
     plugins: [
       new UglifyJSPlugin(
         {
           sourceMap: true
         }
-      )
+      ),
+      new webpack.DefinePlugin(
+        {
+          // define environment as production
+          'process.env.NODE_ENV': JSON.stringify(
+            'production'
+          )
+        }
+      ),
     ]
   }
 );
@@ -34,6 +43,7 @@ const production = merge(
 module.exports = [
   production,
 
+  // server specific webpack config
   Object.assign(
     {},
 
@@ -52,7 +62,7 @@ module.exports = [
           __dirname,
           'dist'
         ),
-        filename: 'bundle.server.js',
+        filename: 'server.js',
         libraryTarget: 'commonjs2'
       },
 
@@ -66,8 +76,7 @@ module.exports = [
           {
             exclude: [
               'assets',
-              'index.html',
-              'bundle.js'
+              /app.$/
             ]
           }
         ),
