@@ -2,18 +2,18 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
+import { HashRouter } from 'react-router-dom';
 import app from '../common/component/app';
 import store from '../common/redux/sagaPort';
 
 hydrate(
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
       {
         app(
         )
       }
-    </BrowserRouter>
+    </HashRouter>
   </Provider>,
   document.getElementById(
     'react-root',
