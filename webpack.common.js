@@ -118,7 +118,7 @@ module.exports = {
         // Specify the path to ico logo for the web page
         favicon: path.resolve(
           __dirname,
-          'dist/assets/icon.ico'
+          'assets/icon.ico'
         ),
         // Specify the files which should be linked
         chunks: [
@@ -128,7 +128,7 @@ module.exports = {
         // Specify template which this plugin will use to create our dist/index.html bundled file
         template: path.resolve(
           __dirname,
-          'dist/assets/html-template.html'
+          'assets/html-template.html'
         )
       }
     ),
