@@ -15,12 +15,12 @@ const merge = require(
 const UglifyJSPlugin = require(
   'uglifyjs-webpack-plugin'
 );
-const webpackServer = require(
+const webpackCommon = require(
   './webpack.common'
 );
 
 const production = merge(
-  webpackServer,
+  webpackCommon,
   {
     plugins: [
       new UglifyJSPlugin(
@@ -75,7 +75,6 @@ module.exports = [
           ],
           {
             exclude: [
-              'assets',
               /app.$/
             ]
           }

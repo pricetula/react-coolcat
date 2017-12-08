@@ -5,12 +5,12 @@ const path = require(
 const merge = require(
   'webpack-merge'
 );
-const webpackClient = require(
+const webpackCommon = require(
   './webpack.common'
 );
 
 module.exports = merge(
-  webpackClient,
+  webpackCommon,
   {
     devtool: 'inline-source-map',
 

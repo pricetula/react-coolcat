@@ -158,12 +158,7 @@ module.exports = {
     new CleanWebpackPlugin(
       [
         'dist'
-      ],
-      {
-        exclude: [
-          'assets',
-        ]
-      }
+      ]
     )
   ]
 };
