@@ -2,9 +2,10 @@
   "presets": [
     "env",
     "react",
-    "es2015"
+    "es2017"
   ],
   "plugins": [
+    "transform-object-rest-spread",
     "transform-regenerator",
     "transform-runtime",
     "syntax-dynamic-import"
