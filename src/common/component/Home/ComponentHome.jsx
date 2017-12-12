@@ -27,7 +27,19 @@ function Component(
       container
       className={classes.root}
     >
-      <Paper className={classes.paper} />
+      <Grid
+        item
+        xs={12}
+      >
+        <Paper className={classes.paper} />
+      </Grid>
+
+      <Grid
+        item
+        xs={12}
+      >
+        <Paper className={classes.paper} />
+      </Grid>
     </Grid>
   );
 }

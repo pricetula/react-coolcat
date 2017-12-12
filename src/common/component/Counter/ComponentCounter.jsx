@@ -1,86 +1,169 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
+import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
+import ComponentCounterHistory from '../CounterHistory';
 
-function ComponentCounter(
+const styles = theme => (
   {
-    notification,
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      backgroundColor: theme.palette.common.white,
+      height: 380,
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      alignContent: 'center',
+      alignItems: 'center',
+    },
+  }
+);
+
+function Component(
+  {
+    classes,
     counter,
-    actionNotify,
     actionIncreaseCount,
     actionDecreaseCount,
     actionResetCount,
+    actionAddCounterHistory,
   },
 ) {
   return (
-    <div>
-      <h2>Counter</h2>
-
-      <h4>{notification}</h4>
-
-      Counter: <b>{counter}</b> <br />
-
-      <Button
-        raised
-        color="primary"
-        onClick={
-          (
-          ) => {
-            actionIncreaseCount(
-            );
-            actionNotify(
-              'Increasing Count',
-            );
-          }
-        }
+    <Grid
+      container
+      className={classes.root}
+    >
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={9}
       >
-        Increase Count
-      </Button>
+        <Paper className={classes.paper}>
+          <Grid
+            container
+            justify="center"
+          >
+            <Typography type="headline">
+              Counter
+            </Typography>
+          </Grid>
 
-      <Button
-        raised
-        color="red"
-        onClick={
-          (
-          ) => {
-            actionResetCount(
-            );
-            actionNotify(
-              'Reseting Count',
-            );
-          }
-        }
-      >
-        Reset Count
-      </Button>
+          <Grid
+            container
+            justify="center"
+          >
+            <Typography type="display4">
+              {counter}
+            </Typography>
+          </Grid>
 
-      <Button
-        raised
-        color="secondary"
-        onClick={
-          (
-          ) => {
-            actionDecreaseCount(
-            );
-            actionNotify(
-              'Decreasing Count',
-            );
-          }
-        }
+          <Grid
+            container
+            justify="center"
+          >
+            <Grid
+              style={
+                {
+                  textAlign: 'center',
+                }
+              }
+              item
+              xs={10}
+            >
+              <Button
+                raised
+                color="primary"
+                onClick={
+                  (
+                  ) => {
+                    actionIncreaseCount(
+                    );
+                    actionAddCounterHistory(
+                      {
+                        counter,
+                        type: 'Increased',
+                      },
+                    );
+                  }
+                }
+              >
+                Increase Count
+              </Button>
+
+              <Button
+                raised
+                color="red"
+                onClick={
+                  (
+                  ) => {
+                    actionResetCount(
+                    );
+                    actionAddCounterHistory(
+                      {
+                        counter,
+                        type: 'Reset',
+                      },
+                    );
+                  }
+                }
+              >
+                Reset Count
+              </Button>
+
+              <Button
+                raised
+                color="secondary"
+                onClick={
+                  (
+                  ) => {
+                    actionDecreaseCount(
+                    );
+                    actionAddCounterHistory(
+                      {
+                        type: 'Decreased',
+                      },
+                    );
+                  }
+                }
+              >
+                Decrease Count
+              </Button>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Grid>
+
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={3}
       >
-        Decrease Count
-      </Button>
-    </div>
+        <ComponentCounterHistory />
+      </Grid>
+    </Grid>
   );
 }
 
-ComponentCounter.propTypes = {
-  notification: PropTypes.string.isRequired,
+Component.propTypes = {
   counter: PropTypes.number.isRequired,
-  actionNotify: PropTypes.func.isRequired,
+  actionAddCounterHistory: PropTypes.func.isRequired,
   actionIncreaseCount: PropTypes.func.isRequired,
   actionDecreaseCount: PropTypes.func.isRequired,
   actionResetCount: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default ComponentCounter;
+export default withStyles(
+  styles,
+)(
+  Component,
+);

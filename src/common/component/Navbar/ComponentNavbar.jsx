@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import logoImageSrc from '../../../../assets/logo.png';
 
 const styles = theme => (
   {
@@ -17,7 +18,7 @@ const styles = theme => (
       width: '100%',
     },
     appBar: {
-      backgroundColor: theme.palette.grey[100],
+      backgroundColor: theme.palette.common.white,
     },
     flex: {
       flex: 1,
@@ -34,6 +35,7 @@ function Component(
   props,
 ) {
   const {
+    actionUiState,
     classes,
   } = props;
 
@@ -48,18 +50,29 @@ function Component(
             className={classes.menuButton}
             color={classes.textColor}
             aria-label="Menu"
+            onClick={
+              (
+              ) => actionUiState(
+                'STATE_LDRAWER_OPEN',
+              )
+            }
           >
             <MenuIcon />
           </IconButton>
-          
+
           <Typography
             type="title"
             color={classes.textColor}
             className={classes.flex}
           >
-            Title
+            <img
+              src={logoImageSrc}
+              alt="logo"
+              width={65}
+              height={40}
+            />
           </Typography>
-          
+
           <Button
             color={classes.textColor}
           >
@@ -73,6 +86,7 @@ function Component(
 
 Component.propTypes = {
   classes: PropTypes.object.isRequired,
+  actionUiState: PropTypes.func.isRequired,
 };
 
 export default withStyles(
