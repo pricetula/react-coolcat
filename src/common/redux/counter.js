@@ -1,21 +1,21 @@
 export function actionIncreaseCount(
 ) {
   return {
-    type: 'COUNTER_INCREASE',
+    type: 'COUNTER_INCREASE_REQUEST',
   };
 }
 
 export function actionDecreaseCount(
 ) {
   return {
-    type: 'COUNTER_DECREASE',
+    type: 'COUNTER_DECREASE_REQUEST',
   };
 }
 
 export function actionResetCount(
 ) {
   return {
-    type: 'COUNTER_RESET',
+    type: 'COUNTER_RESET_REQUEST',
   };
 }
 
@@ -24,13 +24,13 @@ export function reducerCounter(
   action,
 ) {
   switch (action.type) {
-    case 'COUNTER_INCREASE':
+    case 'COUNTER_INCREASE_OK':
       return state + 1;
 
-    case 'COUNTER_DECREASE':
+    case 'COUNTER_DECREASE_OK':
       return state - 1;
 
-    case 'COUNTER_RESET':
+    case 'COUNTER_RESET_OK':
       return 0;
 
     default:
