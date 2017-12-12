@@ -3,10 +3,11 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import ComponentNavbar from '../Navbar';
+import ComponentDrawerVariant from '../Drawer/Variant';
 import ComponentFooter from '../Footer';
+import ComponentNotification from '../Notification';
 
 class App extends Component {
   componentDidMount(
@@ -37,10 +38,15 @@ class App extends Component {
     return (
       <div>
         <ComponentNavbar />
+        <ComponentDrawerVariant />
+        <ComponentNotification />
 
-        <Link to="/counter">Counter</Link>
-        <Link to="/todo">Todo</Link>
-        <Link to="/">Home</Link>
+        <div
+          style={{
+            width: '100%',
+            height: '80px',
+          }}
+        />
 
         {
           renderRoutes(
