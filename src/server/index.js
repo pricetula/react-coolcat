@@ -1,6 +1,5 @@
 /* eslint-disable function-paren-newline */
 import winston from 'winston';
-import axios from 'axios';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
@@ -51,8 +50,6 @@ app.use(
 const port = process.env.PORT || 8080;
 
 const url = `http://localhost:${port}`;
-
-axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
 app.get(
   '*',
