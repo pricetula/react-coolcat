@@ -129,6 +129,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(
       {
+        title: 'Cool Cat v.1',
         // Make sure to link files only when changed ie different hash
         cache: true,
         // Specify the path to ico logo for the web page
