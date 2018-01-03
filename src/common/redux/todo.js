@@ -1,6 +1,6 @@
 export const initState = {
   todos: [],
-  showPriority: false,
+  showPriority: 0,
   showHidden: false,
   showFinished: false,
   showIncomplete: false,
@@ -56,10 +56,14 @@ export function actionUpdateTodoHide(
 }
 
 export function actionUpdateTodoPriority(
-  payload,
+  id,
+  priority,
 ) {
   return {
-    payload,
+    payload: {
+      id,
+      priority,
+    },
     type: 'TODO_UPDATE_PRIORITY_REQUEST',
   };
 }
@@ -84,8 +88,10 @@ export function actionDeleteTodo(
 
 export function actionShowTodo(
   type,
+  payload = 0,
 ) {
   return {
+    payload,
     type,
   };
 }

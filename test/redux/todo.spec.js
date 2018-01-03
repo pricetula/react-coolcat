@@ -57,8 +57,9 @@ describe(
           0,
         );
 
-        assert.isFalse(
+        assert.strictEqual(
           initState.showPriority,
+          0,
           'showPriority',
         );
         assert.isFalse(
@@ -118,9 +119,13 @@ describe(
         assert.deepEqual(
           actionUpdateTodoPriority(
             'todo.id.1',
+            1,
           ),
           {
-            payload: 'todo.id.1',
+            payload: {
+              id: 'todo.id.1',
+              priority: 1,
+            },
             type: 'TODO_UPDATE_PRIORITY_REQUEST',
           },
           'TODO_UPDATE_PRIORITY_REQUEST',
@@ -171,6 +176,7 @@ describe(
             'SHOW_TYPE',
           ),
           {
+            payload: 0,
             type: 'SHOW_TYPE',
           },
           'SHOW_TYPE',
