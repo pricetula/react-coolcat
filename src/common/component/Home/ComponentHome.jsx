@@ -33,13 +33,6 @@ function Component(
       >
         <Paper className={classes.paper} />
       </Grid>
-
-      <Grid
-        item
-        xs={12}
-      >
-        <Paper className={classes.paper} />
-      </Grid>
     </Grid>
   );
 }
