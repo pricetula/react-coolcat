@@ -1,3 +1,7 @@
 import ComponentTodo from './ComponentTodo';
+import reduxContainer from '../../redux/container';
 
-export default ComponentTodo;
+export default reduxContainer(
+  ComponentTodo,
+);
+
