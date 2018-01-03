@@ -8,7 +8,7 @@ import {
   withCookies,
   Cookies,
 } from 'react-cookie';
-import ComponentAccountSignupSigninContainer from '../Account/SignupSigninContainer';
+import ComponentAccountSignupSigninContainer from '../../Account/SignupSigninContainer';
 
 class Mycomponent extends Component {
   componentWillMount(
