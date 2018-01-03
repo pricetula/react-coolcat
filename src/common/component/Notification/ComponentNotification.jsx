@@ -1,53 +1,106 @@
-import React from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import { CircularProgress } from 'material-ui/Progress';
 import Snackbar from 'material-ui/Snackbar';
 
 const styles = theme => (
   {
-    close: {
-      width: theme.spacing.unit * 4,
-      height: theme.spacing.unit * 4,
+    progress: {
+      margin: `0 ${theme.spacing.unit * 2}px`,
+    },
+    snackbar: {
+      backgroundColor: theme.palette.primary,
     },
   }
 );
 
-function Component(
-  {
-    classes,
-    notification,
-  },
-) {
-  return (
-    <Snackbar
-      anchorOrigin={
-        {
-          vertical: 'top',
-          horizontal: 'left',
+class Mycomponent extends Component {
+  constructor(
+    props,
+  ) {
+    super(
+      props,
+    );
+
+    this.renderLoader = this.renderLoader.bind(
+      this,
+    );
+  }
+
+  renderLoader(
+  ) {
+    const {
+      classes,
+      notification: {
+        loading,
+      },
+    } = this.props;
+
+    return loading && (
+      <CircularProgress
+        size={16}
+        thickness={8}
+        className={classes.progress}
+      />
+    );
+  }
+
+  render(
+  ) {
+    const {
+      classes,
+      notification: {
+        notification,
+        error,
+        warning,
+      },
+    } = this.props;
+
+    return (
+      <Snackbar
+        anchorOrigin={
+          {
+            vertical: 'top',
+            horizontal: 'left',
+          }
         }
-      }
-      open={notification.length > 0}
-      SnackbarContentProps={
-        {
-          'aria-describedby': 'message-id',
+        open={notification.length > 0}
+        SnackbarContentProps={
+          {
+            'aria-describedby': 'message-id',
+          }
         }
-      }
-      message={
-        <span id="message-id">
-          {notification}
-        </span>
-      }
-    />
-  );
+        message={
+          <span id="message-id">
+            {
+              this.renderLoader(
+              )
+            }
+            {notification}
+          </span>
+        }
+      />
+    );
+  }
 }
 
-Component.propTypes = {
+Mycomponent.propTypes = {
   classes: PropTypes.object.isRequired,
-  notification: PropTypes.string.isRequired,
+  notification: PropTypes.shape(
+    {
+      notification: PropTypes.string.isRequired,
+      error: PropTypes.bool.isRequired,
+      warning: PropTypes.bool.isRequired,
+      loading: PropTypes.bool.isRequired,
+    },
+  ).isRequired,
 };
 
 export default withStyles(
   styles,
 )(
-  Component,
+  Mycomponent,
 );
