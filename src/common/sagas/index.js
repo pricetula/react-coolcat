@@ -4,6 +4,12 @@ import {
 import {
   watchCounterHistory,
 } from './counterHistory';
+import {
+  watchUser,
+} from './user';
+import {
+  watchNotifier,
+} from './notifier';
 
 export default function* rootSaga(
 ) {
@@ -11,6 +17,10 @@ export default function* rootSaga(
     watchCounterHistory(
     ),
     watchCounter(
+    ),
+    watchUser(
+    ),
+    watchNotifier(
     ),
   ];
 }

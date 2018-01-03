@@ -1,3 +1,5 @@
+export const initState = 0;
+
 export function actionIncreaseCount(
 ) {
   return {
@@ -20,7 +22,7 @@ export function actionResetCount(
 }
 
 export function reducerCounter(
-  state = 0,
+  state = initState,
   action,
 ) {
   switch (action.type) {

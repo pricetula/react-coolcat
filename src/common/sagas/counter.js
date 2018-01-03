@@ -14,7 +14,7 @@ function* handleCounter(
 ) {
   yield put(
     {
-      type: 'COUNTER_MESSAGE_OK',
+      type: 'NOTIFY_OK',
       payload: message,
     },
   );
@@ -31,7 +31,7 @@ function* handleCounter(
 
   yield put(
     {
-      type: 'COUNTER_MESSAGE_RESET',
+      type: 'NOTIFY_RESET',
     },
   );
 }

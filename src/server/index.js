@@ -6,6 +6,8 @@ import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import express from 'express';
 import cors from 'cors';
+import cookiesMiddleware from 'universal-cookie-express';
+import { CookiesProvider } from 'react-cookie';
 import sagaServerPort from '../common/redux/sagaServerPort';
 import App from '../common/component/App';
 import combinedSagas from '../common/sagas';
@@ -47,6 +49,11 @@ app.use(
   ),
 );
 
+app.use(
+  cookiesMiddleware(
+  ),
+);
+
 const port = process.env.PORT || 8080;
 
 const url = `http://localhost:${port}`;
@@ -63,7 +70,9 @@ app.get(
     const Component = (
       <Provider store={store}>
         <StaticRouter location={req.url} context={{}}>
-          <App />
+          <CookiesProvider>
+            <App />
+          </CookiesProvider>
         </StaticRouter>
       </Provider>
     );

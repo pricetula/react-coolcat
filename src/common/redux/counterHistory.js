@@ -1,3 +1,5 @@
+export const initState = [];
+
 export function actionAddCounterHistory(
   payload,
 ) {
@@ -15,7 +17,7 @@ export function actionResetCounterHistory(
 }
 
 export function reducerCounterHistory(
-  state = [],
+  state = initState,
   action,
 ) {
   switch (action.type) {
@@ -27,7 +29,7 @@ export function reducerCounterHistory(
         ...state,
         action.payload,
       ];
-console.log(newState);
+
       return newState;
     }
 

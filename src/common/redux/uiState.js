@@ -1,3 +1,8 @@
+export const initState = {
+  stateLdrawerOpen: false,
+  stateSigninSignupOpen: false,
+};
+
 export function actionUiState(
   type,
 ) {
@@ -7,9 +12,7 @@ export function actionUiState(
 }
 
 export function reducerUIState(
-  state = {
-    stateLdrawerOpen: false,
-  },
+  state = initState,
   action,
 ) {
   switch (action.type) {
@@ -17,6 +20,12 @@ export function reducerUIState(
       return {
         ...state,
         stateLdrawerOpen: !state.stateLdrawerOpen,
+      };
+
+    case 'STATE_SIGNINSIGNUP_OPEN':
+      return {
+        ...state,
+        stateSigninSignupOpen: action.payload,
       };
 
     default:
