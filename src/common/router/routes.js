@@ -1,6 +1,6 @@
 import App from '../component/App';
 import Home from '../component/Home';
-import Todo from '../component/Todo';
+import Todo from '../component/Todo/Container';
 import Simple from '../component/Simple';
 import Counter from '../component/Counter';
 
