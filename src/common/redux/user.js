@@ -28,6 +28,13 @@ export function actionGetUser(
   };
 }
 
+export function actionSignout(
+) {
+  return {
+    type: 'USER_SIGNOUT_REQUEST',
+  };
+}
+
 export function reducerUser(
   state = initState,
   action,
@@ -46,7 +53,7 @@ export function reducerUser(
         token: action.payload.token,
       };
 
-    case 'USER_LOGOUT_OK':
+    case 'USER_SIGNOUT_OK':
       return initState;
 
     default:

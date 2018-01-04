@@ -28,6 +28,7 @@ import {
   actionSignup,
   actionSignin,
   actionGetUser,
+  actionSignout,
 } from './user';
 import {
   actionAddCounterHistory,
@@ -151,6 +152,7 @@ export default function (
     actionSignup: PropTypes.func.isRequired,
     actionSignin: PropTypes.func.isRequired,
     actionGetUser: PropTypes.func.isRequired,
+    actionSignout: PropTypes.func.isRequired,
     actionShowTodo: PropTypes.func.isRequired,
     actionAddTodo: PropTypes.func.isRequired,
     actionDeleteTodo: PropTypes.func.isRequired,
@@ -180,6 +182,7 @@ export default function (
         actionSignup,
         actionSignin,
         actionGetUser,
+        actionSignout,
         actionIncreaseCount,
         actionDecreaseCount,
         actionResetCount,
