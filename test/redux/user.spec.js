@@ -4,6 +4,7 @@ import {
 } from 'chai';
 import faker from 'faker';
 import {
+  actionSignout,
   actionSignup,
   actionSignin,
   actionGetUser,
@@ -81,6 +82,20 @@ describe(
         );
 
         assert.isObject(
+          actionSignout(
+          ),
+          'Action getuser dispatched action type',
+        );
+        assert.deepEqual(
+          actionSignout(
+          ),
+          {
+            type: 'USER_SIGNOUT_REQUEST',
+          },
+          'Action signout dispatched action',
+        );
+
+        assert.isObject(
           actionGetUser(
           ),
           'Action getuser dispatched action type',
@@ -124,11 +139,11 @@ describe(
           reducerUser(
             payload,
             {
-              type: 'USER_LOGOUT_OK',
+              type: 'USER_SIGNOUT_OK',
             },
           ),
           initState,
-          'USER_LOGOUT_OK',
+          'USER_SIGNOUT_OK',
         );
 
         assert.deepEqual(
