@@ -5,8 +5,8 @@ import {
   put,
   takeLatest,
   call,
+  take,
 } from 'redux-saga/effects';
-import Cookies from 'universal-cookie';
 import {
   postUserSignup,
   postUserSignin,
@@ -15,20 +15,49 @@ import {
   getUserData,
 } from '../api/get/user';
 
-const cookies = new Cookies(
-);
+export function* handleSignout(
+) {
+  yield put(
+    {
+      type: 'COOKIE_REMOVE_REQUEST',
+    },
+  );
 
-export function* handleUserData(
+  yield take(
+    'COOKIE_REMOVE_OK',
+  );
+
+  yield put(
+    {
+      type: 'USER_SIGNOUT_OK',
+    },
+  );
+
+  yield put(
+    {
+      type: 'STATE_SIGNINSIGNUP_OPEN',
+      payload: true,
+    },
+  );
+}
+
+export function* handleGetUserData(
 ) {
   try {
-    const token = cookies.get(
-      'authToken',
+    yield put(
+      {
+        type: 'COOKIE_GET_REQUEST',
+      },
     );
 
-    if (token) {
+    const action = yield take(
+      'COOKIE_GET_OK',
+    );
+
+    if (action.payload) {
       const apiResponse = yield call(
         getUserData,
-        token,
+        action.payload,
       );
 
       yield put(
@@ -46,6 +75,14 @@ export function* handleUserData(
       );
     }
   } catch (err) {
+    if (err.response.status === 401) {
+      yield put(
+        {
+          type: 'USER_SIGNOUT_REQUEST',
+        },
+      );
+    }
+
     yield put(
       {
         type: 'NOTIFY_CLEAR_REQUEST',
@@ -76,9 +113,15 @@ export function* handleSignin(
       action.payload,
     );
 
-    cookies.set(
-      'authToken',
-      apiResponse.data.token,
+    yield put(
+      {
+        type: 'COOKIE_SET_REQUEST',
+        payload: apiResponse.data.token,
+      },
+    );
+
+    yield take(
+      'COOKIE_SET_OK',
     );
 
     yield put(
@@ -178,8 +221,12 @@ export function* watchUser(
       handleSignin,
     ),
     takeLatest(
+      'USER_SIGNOUT_REQUEST',
+      handleSignout,
+    ),
+    takeLatest(
       'USER_DATA_REQUEST',
-      handleUserData,
+      handleGetUserData,
     ),
   ];
 }
