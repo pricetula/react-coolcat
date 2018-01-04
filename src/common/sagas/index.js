@@ -10,6 +10,12 @@ import {
 import {
   watchNotifier,
 } from './notifier';
+import {
+  watchTodo,
+} from './todo';
+import {
+  watchCookie,
+} from './cookie';
 
 export default function* rootSaga(
 ) {
@@ -21,6 +27,10 @@ export default function* rootSaga(
     watchUser(
     ),
     watchNotifier(
+    ),
+    watchTodo(
+    ),
+    watchCookie(
     ),
   ];
 }
