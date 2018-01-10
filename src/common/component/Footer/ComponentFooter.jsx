@@ -2,17 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
 const styles = theme => (
   {
     root: {
-      flexGrow: 1,
-    },
-    paper: {
-      backgroundColor: theme.palette.grey[900],
-      height: 100,
+      flex: '1 100%',
       width: '100%',
+      backgroundColor: theme.palette.grey[900],
+    },
+    text: {
+      color: theme.palette.grey[300],
+      textAlign: 'center',
     },
   }
 );
@@ -23,17 +24,32 @@ function Component(
   },
 ) {
   return (
-    <Grid
-      container
-      className={classes.root}
-    >
+    <div className={classes.root}>
       <Grid
-        item
-        xs={12}
+        container
+        direction="row"
+        alignItems="center"
+        justify="space-around"
+        className={classes.sectionContainer}
+        style={
+          {
+            height: 80,
+          }
+        }
       >
-        <Paper className={classes.paper} />
+        <Grid
+          item
+          xs={10}
+        >
+          <Typography
+            className={classes.text}
+            type="body2"
+          >
+            &copy; 2017
+          </Typography>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 }
 
