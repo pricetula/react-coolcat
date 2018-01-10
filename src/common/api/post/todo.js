@@ -7,6 +7,8 @@ export const postAddTodo = (
     item,
     description,
     dueDate,
+    startDate,
+    localId,
   },
   token,
 ) => new Promise(
@@ -20,6 +22,8 @@ export const postAddTodo = (
         item,
         description,
         dueDate,
+        startDate,
+        localId,
       },
       {
         headers: {
