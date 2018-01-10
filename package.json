@@ -4,13 +4,15 @@
   "description": "React, GraphQl, Redux & Redux-saga example",
   "main": "src/client/index.js",
   "scripts": {
+    "start": "NODE_ENV=production node ./dist/server.js",
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha test/*.spec.js -r babel-core/register --recursive test --exit",
     "getchart": "webpack --config webpack.prod.js --profile --json > stats.json",
     "start:client:dev": "webpack-dev-server --config webpack.dev.js",
     "start:server:dev": "NODE_ENV=development nodemon --exec ./node_modules/.bin/babel-node --watch src -- src/server/index.js",
     "build:prod": "webpack --config webpack.prod.js -p",
     "start:server:prod": "NODE_ENV=production node ./dist/server.js",
-    "build:start:server:prod": "npm run build:prod && npm run start:server:prod"
+    "build:start:server:prod": "npm run build:prod && npm run start:server:prod",
+    "postinstall": "webpack --config webpack.prod.js -p"
   },
   "repository": {
     "type": "git",
