@@ -85,8 +85,9 @@ module.exports = {
         ),
         // TODO check out more about this
         // I think it looks for all .css file modules
-        loader: ExtractTextPlugin.extract(
+        use: ExtractTextPlugin.extract(
           {
+            fallback: 'style-loader',
             use: 'css-loader'
           }
         )
@@ -172,7 +173,10 @@ module.exports = {
       }
     ),
     new ExtractTextPlugin(
-      'style.css'
+      {
+        filename: '[name].css',
+        allChunks: true
+      }
     ),
     new CleanWebpackPlugin(
       [

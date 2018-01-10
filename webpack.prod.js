@@ -15,6 +15,9 @@ const merge = require(
 const UglifyJSPlugin = require(
   'uglifyjs-webpack-plugin'
 );
+const ExtractTextPlugin = require(
+  'extract-text-webpack-plugin'
+);
 const webpackCommon = require(
   './webpack.common'
 );
@@ -83,7 +86,13 @@ module.exports = [
           {
             sourceMap: true
           }
-        )
+        ),
+        new ExtractTextPlugin(
+          {
+            filename: '[name].css',
+            allChunks: true
+          }
+        ),
       ]
     }
   )
