@@ -41,7 +41,7 @@ describe(
           initState,
           [
             'todos',
-            'showPriority',
+            'showHighPriority',
             'showHidden',
             'showFinished',
             'showIncomplete',
@@ -57,10 +57,9 @@ describe(
           0,
         );
 
-        assert.strictEqual(
-          initState.showPriority,
-          0,
-          'showPriority',
+        assert.isFalse(
+          initState.showHighPriority,
+          'showHighPriority',
         );
         assert.isFalse(
           initState.showHidden,
@@ -176,7 +175,6 @@ describe(
             'SHOW_TYPE',
           ),
           {
-            payload: 0,
             type: 'SHOW_TYPE',
           },
           'SHOW_TYPE',
@@ -209,6 +207,37 @@ describe(
           ).todos[0],
           payload,
           'TODO_ADD_OK',
+        );
+
+        assert.deepEqual(
+          reducerTodo(
+            {
+              ...initState,
+              todos: [
+                {
+                  localId: 'test_id_1',
+                  storedRemotely: false,
+                },
+              ],
+            },
+            {
+              payload: {
+                localId: 'test_id_1',
+                status: {
+                  fake: true,
+                },
+              },
+              type: 'TODO_STOREDREMOTELY_OK',
+            },
+          ).todos[0],
+          {
+            localId: 'test_id_1',
+            storedRemotely: true,
+            status: {
+              fake: true,
+            },
+          },
+          'TODO_STOREDREMOTELY_OK',
         );
 
         assert.isFalse(
@@ -255,11 +284,10 @@ describe(
           reducerTodo(
             initState,
             {
-              payload: 2,
               type: 'TODO_SHOWPRIORITY_OK',
             },
-          ).showPriority,
-          2,
+          ).showHighPriority,
+          true,
           'TODO_SHOWPRIORITY_OK',
         );
       },
