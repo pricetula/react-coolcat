@@ -54,27 +54,29 @@ export function* handleSetCookie(
 
 export function* handleSetRemoveCookie(
 ) {
-  const setCookieTask = yield fork(
-    handleSetCookie,
-  );
+  while (true) {
+    const setCookieTask = yield fork(
+      handleSetCookie,
+    );
 
-  yield take(
-    'COOKIE_REMOVE_REQUEST',
-  );
+    yield take(
+      'COOKIE_REMOVE_REQUEST',
+    );
 
-  yield cancel(
-    setCookieTask,
-  );
+    yield cancel(
+      setCookieTask,
+    );
 
-  cookies.remove(
-    cookieName,
-  );
+    cookies.remove(
+      cookieName,
+    );
 
-  yield put(
-    {
-      type: 'COOKIE_REMOVE_OK',
-    },
-  );
+    yield put(
+      {
+        type: 'COOKIE_REMOVE_OK',
+      },
+    );
+  }
 }
 
 export function* watchCookie(

@@ -1,6 +1,6 @@
 export const initState = {
   todos: [],
-  showPriority: 0,
+  showHighPriority: false,
   showHidden: false,
   showFinished: false,
   showIncomplete: false,
@@ -88,10 +88,8 @@ export function actionDeleteTodo(
 
 export function actionShowTodo(
   type,
-  payload = 0,
 ) {
   return {
-    payload,
     type,
   };
 }
@@ -108,6 +106,26 @@ export function reducerTodo(
           ...state.todos,
           action.payload,
         ],
+      };
+
+    case 'TODO_STOREDREMOTELY_OK':
+      return {
+        ...state,
+        todos: state.todos.map(
+          (
+            todo,
+          ) => {
+            if (todo.localId === action.payload.localId) {
+              return {
+                ...todo,
+                status: action.payload.status,
+                storedRemotely: true,
+              };
+            }
+
+            return todo;
+          },
+        ),
       };
 
     case 'TODO_SHOWRECENT_OK':
@@ -137,7 +155,7 @@ export function reducerTodo(
     case 'TODO_SHOWPRIORITY_OK':
       return {
         ...state,
-        showPriority: action.payload,
+        showHighPriority: !state.showHighPriority,
       };
 
     default:

@@ -1,80 +1,139 @@
 import {
+  delay,
+} from 'redux-saga';
+import {
   put,
-  takeLatest,
+  fork,
   call,
   take,
 } from 'redux-saga/effects';
 import {
+  has,
+} from 'lodash/object';
+import randomstring from 'randomstring';
+import {
   postAddTodo,
 } from '../api/post/todo';
 
-export function* handleAddTodo(
-  action,
+export function* handleAddLocalTodo(
+  todo,
 ) {
-  try {
-    yield put(
-      {
-        type: 'NOTIFY_LOADER_OK',
-        payload: `Adding ${action.payload.item}`,
+  yield put(
+    {
+      payload: {
+        ...todo,
+        storedRemotely: has(
+          todo,
+          'owner',
+        ),
       },
+      type: 'TODO_ADD_OK',
+    },
+  );
+}
+
+export function* handleAddTodo(
+) {
+  while (
+    true
+  ) {
+    const action = yield take(
+      'TODO_ADD_REQUEST',
     );
 
-    yield put(
-      {
-        type: 'COOKIE_GET_REQUEST',
-      },
-    );
+    try {
+      yield put(
+        {
+          type: 'NOTIFY_LOADER_OK',
+          payload: `Adding ${action.payload.item}`,
+        },
+      );
 
-    const cookieAction = yield take(
-      'COOKIE_GET_OK',
-    );
+      yield put(
+        {
+          type: 'COOKIE_GET_REQUEST',
+        },
+      );
 
-    if (cookieAction.payload) {
+      const cookieAction = yield take(
+        'COOKIE_GET_OK',
+      );
+
+      const startDate = new Date(
+      );
+
+      const localId = randomstring.generate(
+        5,
+      );
+
+      yield fork(
+        handleAddLocalTodo,
+        {
+          localId,
+          startDate,
+          dueDate: action.payload.dueDate,
+          details: {
+            item: action.payload.item,
+            description: action.payload.description,
+          },
+          status: {
+            priority: 0,
+            hide: false,
+            incomplete: false,
+            finished: false,
+          },
+        },
+      );
+
       const apiResponse = yield call(
         postAddTodo,
-        action.payload,
+        {
+          ...action.payload,
+          startDate,
+          localId,
+        },
         cookieAction.payload,
       );
 
-      if (!apiResponse.data.error) {
+      yield call(
+        delay,
+        1000,
+      );
+
+      if (apiResponse.data.todo) {
         yield put(
           {
-            type: 'NOTIFY_CLEAR_REQUEST',
-            payload: {
-              message: apiResponse.data.message,
-              delayTime: 2000,
-            },
+            type: 'TODO_STOREDREMOTELY_OK',
+            payload: apiResponse.data.todo,
           },
         );
       }
-    } else {
+
       yield put(
         {
-          type: 'STATE_SIGNINSIGNUP_OPEN',
-          payload: true,
+          type: 'NOTIFY_RESET',
+        },
+      );
+    } catch (err) {
+      yield put(
+        {
+          type: 'NOTIFY_CLEAR_REQUEST',
+          payload: {
+            message: err.response.data.message ||
+              err.message ||
+              'Failed To Signin',
+            delayTime: 4000,
+          },
         },
       );
     }
-  } catch (err) {
-    yield put(
-      {
-        type: 'NOTIFY_CLEAR_REQUEST',
-        payload: {
-          message: err.response.data.message ||
-            err.message ||
-            'Failed To Signin',
-          delayTime: 4000,
-        },
-      },
-    );
   }
 }
 
 export function* watchTodo(
 ) {
   yield [
-    takeLatest(
-      'TODO_ADD_REQUEST',
+    fork(
       handleAddTodo,
     ),
   ];

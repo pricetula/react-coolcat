@@ -4,6 +4,9 @@ import React, {
 import {
   isEqual,
 } from 'lodash/lang';
+import {
+  differenceBy,
+} from 'lodash/array';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -64,7 +67,7 @@ export default function (
         },
         todo: {
           todos,
-          showPriority,
+          showHighPriority,
           showHidden,
           showFinished,
           showIncomplete,
@@ -88,7 +91,12 @@ export default function (
           uiState,
         ) ||
         nProps.todo.todos.length !== todos.length ||
-        nProps.todo.showPriority !== showPriority ||
+        differenceBy(
+          nProps.todo.todos,
+          todos,
+          'storedRemotely',
+        ).length > 0 ||
+        nProps.todo.showHighPriority !== showHighPriority ||
         nProps.todo.showHidden !== showHidden ||
         nProps.todo.showFinished !== showFinished ||
         nProps.todo.showIncomplete !== showIncomplete ||
@@ -128,7 +136,7 @@ export default function (
     todo: PropTypes.shape(
       {
         todos: PropTypes.array.isRequired,
-        showPriority: PropTypes.number.isRequired,
+        showHighPriority: PropTypes.bool.isRequired,
         showHidden: PropTypes.bool.isRequired,
         showFinished: PropTypes.bool.isRequired,
         showIncomplete: PropTypes.bool.isRequired,
