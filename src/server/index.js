@@ -44,10 +44,12 @@ app.use(
   ),
 );
 
-app.use(
-  cors(
-  ),
-);
+if (process.env.NODE_ENV !== 'production') {
+  app.use(
+    cors(
+    ),
+  );
+}
 
 app.use(
   cookiesMiddleware(
