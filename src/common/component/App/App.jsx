@@ -8,6 +8,7 @@ import ComponentNavbar from '../Navbar';
 import ComponentDrawerVariant from '../Drawer/Variant';
 import ComponentFooter from '../Footer';
 import ComponentNotification from '../Notification';
+import './style.css';
 
 class App extends Component {
   componentDidMount(
@@ -44,7 +45,7 @@ class App extends Component {
         <div
           style={{
             width: '100%',
-            height: '80px',
+            height: '40px',
           }}
         />
 
