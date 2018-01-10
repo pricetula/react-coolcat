@@ -10,6 +10,7 @@ import {
 } from 'react-cookie';
 import ComponentAccountSignupSigninContainer from '../../Account/SignupSigninContainer';
 import ComponentTodoForm from '../Form';
+import ComponentTodoList from '../List';
 
 class Mycomponent extends Component {
   componentWillMount(
@@ -28,6 +29,7 @@ class Mycomponent extends Component {
       <div>
         <h2>Todo Page</h2>
         <ComponentTodoForm />
+        <ComponentTodoList />
         <ComponentAccountSignupSigninContainer />
       </div>
     );
