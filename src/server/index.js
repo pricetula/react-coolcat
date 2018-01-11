@@ -39,13 +39,13 @@ const app = express(
 );
 
 app.use(
-  express.static(
-    'dist',
+  cors(
   ),
 );
 
 app.use(
-  cors(
+  express.static(
+    'dist',
   ),
 );
 
