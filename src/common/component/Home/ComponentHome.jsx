@@ -21,6 +21,10 @@ import Banner from './Banner';
 import TestTab from './TestTab';
 import RestStepper from './RestStepper';
 import CardDetails from './CardDetails';
+import ImageBanner from '../../../../assets/banner.jpg';
+import ImageUIUX from '../../../../assets/uiux.jpg';
+import ImageTest from '../../../../assets/test.jpg';
+import ImageRest from '../../../../assets/rest.png';
 /* eslint-disable */
 const styles = theme => {
   console.log(theme);
@@ -173,7 +177,7 @@ class Mycomponent extends Component {
       >
         <Banner
           classes={classes}
-          bgImage="https://i.pinimg.com/originals/50/ca/ac/50caac949c68912fb6f53b49ba766d62.jpg"
+          bgImage={ImageBanner}
           header="coolcat"
           text="A React & RESTful Express API demo"
         />
@@ -233,7 +237,7 @@ class Mycomponent extends Component {
         <Banner
           smaller
           classes={classes}
-          bgImage="http://imgs.abduzeedo.com/files/wallpapers/wpw330/wp_1920.jpg"
+          bgImage={ImageUIUX}
           header="UI / UX"
           text="Server-side Rendered React, Redux and Redux-Saga Details"
         />
@@ -312,7 +316,7 @@ class Mycomponent extends Component {
         <Banner
           smaller
           classes={classes}
-          bgImage="https://orig00.deviantart.net/b167/f/2014/330/c/f/flat_pattern_quilts_wallpaper_1_by_microfreaks-d87pp8s.png"
+          bgImage={ImageRest}
           header="RESTful API"
           text="Backend Express rest server with MongoDB"
         />
@@ -353,7 +357,7 @@ class Mycomponent extends Component {
         <Banner
           smaller
           classes={classes}
-          bgImage="https://hdwallsource.com/img/2014/9/polygon-wallpaper-31615-32349-hd-wallpapers.jpg"
+          bgImage={ImageTest}
           header="Testing"
           text="Backend Express rest server with MongoDB"
         />
