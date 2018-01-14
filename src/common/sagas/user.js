@@ -112,7 +112,7 @@ export function* handleSignin(
       postUserSignin,
       action.payload,
     );
-
+    console.log(apiResponse)
     yield put(
       {
         type: 'COOKIE_SET_REQUEST',

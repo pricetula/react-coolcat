@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
-import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 
-const styles = theme => (
+export const styles = theme => (
   {
     root: {
       flex: '1 100%',
@@ -18,7 +17,7 @@ const styles = theme => (
   }
 );
 
-function Component(
+function Mycomponent(
   {
     classes,
   },
@@ -53,12 +52,8 @@ function Component(
   );
 }
 
-Component.propTypes = {
+Mycomponent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  Component,
-);
+export default Mycomponent;

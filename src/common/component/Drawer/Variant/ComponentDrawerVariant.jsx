@@ -12,7 +12,8 @@ import HomeIcon from 'material-ui-icons/Home';
 import AssignmentIcon from 'material-ui-icons/Assignment';
 import ExposureIcon from 'material-ui-icons/Exposure';
 
-const styles = theme => (
+export const styles = (
+) => (
   {
     root: {
       width: '100%',
@@ -24,7 +25,7 @@ const styles = theme => (
   }
 );
 
-const MiniDrawer = (
+const Mycomponent = (
   {
     classes,
     actionUiState,
@@ -47,74 +48,72 @@ const MiniDrawer = (
         )
       }
     >
-      <div>
-        <List>
-          <Link
-            className={classes.links}
-            to="/"
-          >
-            <ListItem
-              button
-              onClick={
-                (
-                ) => actionUiState(
-                  'STATE_LDRAWER_OPEN',
+      <List>
+        <Link
+          className={classes.links}
+          to="/"
+        >
+          <ListItem
+            button
+            onClick={
+              (
+              ) => actionUiState(
+                'STATE_LDRAWER_OPEN',
                 )
-              }
-            >
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-          </Link>
+            }
+          >
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
 
-          <Link
-            className={classes.links}
-            to="/todo"
-          >
-            <ListItem
-              button
-              onClick={
-                (
-                ) => actionUiState(
-                  'STATE_LDRAWER_OPEN',
+        <Link
+          className={classes.links}
+          to="/todo"
+        >
+          <ListItem
+            button
+            onClick={
+              (
+              ) => actionUiState(
+                'STATE_LDRAWER_OPEN',
                 )
-              }
-            >
-              <ListItemIcon>
-                <AssignmentIcon />
-              </ListItemIcon>
-              <ListItemText primary="Todo" />
-            </ListItem>
-          </Link>
+            }
+          >
+            <ListItemIcon>
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Todo" />
+          </ListItem>
+        </Link>
 
-          <Link
-            className={classes.links}
-            to="/counter"
-          >
-            <ListItem
-              button
-              onClick={
-                (
-                ) => actionUiState(
-                  'STATE_LDRAWER_OPEN',
+        <Link
+          className={classes.links}
+          to="/counter"
+        >
+          <ListItem
+            button
+            onClick={
+              (
+              ) => actionUiState(
+                'STATE_LDRAWER_OPEN',
                 )
-              }
-            >
-              <ListItemIcon>
-                <ExposureIcon />
-              </ListItemIcon>
-              <ListItemText primary="Counter" />
-            </ListItem>
-          </Link>
-        </List>
-      </div>
+            }
+          >
+            <ListItemIcon>
+              <ExposureIcon />
+            </ListItemIcon>
+            <ListItemText primary="Counter" />
+          </ListItem>
+        </Link>
+      </List>
     </Drawer>
   </div>
 );
 
-MiniDrawer.propTypes = {
+Mycomponent.propTypes = {
   classes: PropTypes.object.isRequired,
   actionUiState: PropTypes.func.isRequired,
   uiState: PropTypes.object.isRequired,
@@ -123,5 +122,5 @@ MiniDrawer.propTypes = {
 export default withStyles(
   styles,
 )(
-  MiniDrawer,
+  Mycomponent,
 );

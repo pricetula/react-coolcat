@@ -1,3 +1,10 @@
-import ComponentFooter from './ComponentFooter';
+import { withStyles } from 'material-ui/styles';
+import ComponentFooter, {
+  styles,
+} from './ComponentFooter';
 
-export default ComponentFooter;
+export default withStyles(
+  styles,
+)(
+  ComponentFooter,
+);
