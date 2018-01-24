@@ -2,15 +2,14 @@ import React, {
   Component,
 } from 'react';
 import {
-  sortBy
+  sortBy,
 } from 'lodash/collection';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import ListSubheader from 'material-ui/List/ListSubheader';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 
-const styles = theme => (
+export const styles = theme => (
   {
     root: {
       width: '100%',
@@ -74,7 +73,7 @@ class MComponent extends Component {
     this.setState(
       {
         rerender: !this.state.rerender,
-      }
+      },
     );
   }
 
@@ -109,13 +108,13 @@ class MComponent extends Component {
                   primary={history.detail}
                   secondary={
                     moment(
-                      history.date
+                      history.date,
                     ).fromNow(
                     )
                   }
                 />
               </ListItem>
-            )
+            ),
           )
         }
       </List>
@@ -128,8 +127,4 @@ MComponent.propTypes = {
   counterHistory: PropTypes.array.isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  MComponent,
-);
+export default MComponent;

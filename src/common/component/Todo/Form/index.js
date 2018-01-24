@@ -1,6 +1,13 @@
-import ComponentTodoForm from './ComponentTodoForm';
+import { withStyles } from 'material-ui/styles';
+import ComponentTodoForm, {
+  styles,
+} from './ComponentTodoForm';
 import reduxContainer from '../../../redux/container';
 
-export default reduxContainer(
-  ComponentTodoForm,
+export default withStyles(
+  styles,
+)(
+  reduxContainer(
+    ComponentTodoForm,
+  ),
 );

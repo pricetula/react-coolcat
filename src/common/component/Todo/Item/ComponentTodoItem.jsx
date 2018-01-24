@@ -22,6 +22,7 @@ function Mycomponent(
 }
 
 Mycomponent.propTypes = {
+  storedRemotely: PropTypes.bool.isRequired,
   details: PropTypes.shape(
     {
       item: PropTypes.string.isRequired,
@@ -31,4 +32,3 @@ Mycomponent.propTypes = {
 };
 
 export default Mycomponent;
-

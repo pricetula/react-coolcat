@@ -1,16 +1,17 @@
 
 /* eslint-env mocha */
 import React from 'react';
-import Drawer from 'material-ui/Drawer';
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from 'material-ui/List';
-import Typography from 'material-ui/Typography';
 import {
   shallow,
 } from 'enzyme';
+import Drawer from 'material-ui/Drawer';
+import { Link } from 'react-router-dom';
+import List, {
+  ListItem,
+  ListItemIcon,
+  // ListItemText,
+} from 'material-ui/List';
+import HomeIcon from 'material-ui-icons/Home';
 import {
   assert,
 } from 'chai';
@@ -62,68 +63,75 @@ describe(
             }
           />,
         );
-console.log(wrapper.children().length)
+
         assert.lengthOf(
-          wrapper.children(
-          ),
+          wrapper.children,
           1,
         );
 
-        assert.equal(
-          wrapper
-            .childAt(
-              0,
-            )
-            .type(
-            ),
-          Drawer,
-        );
-
         assert.deepInclude(
-          wrapper
-            .childAt(
-              0,
-            ).props(
-            ),
+          wrapper.find(Drawer).props(),
           {
             BackdropInvisible: true,
             open: false,
-            style: {
-              backgroundColor: 'rgba(235, 208, 255, 0.5)',
-            },
           },
         );
 
         assert.lengthOf(
-          wrapper
-            .childAt(
-              0,
-            )
-            .children(
-            ),
+          wrapper.find(Drawer).children,
           1,
         );
 
         assert.equal(
-          wrapper
-            .childAt(
-              0,
-            ).type(
-            ),
+          wrapper.find(Drawer).childAt(0).type(),
           List,
         );
 
         assert.lengthOf(
-          wrapper
-            .childAt(
-              0,
-            )
-            .childAt(
-              0,
-            ).children(
-            ),
-          3,
+          wrapper.childAt(0).childAt(0).children,
+          1,
         );
+
+        assert.equal(
+          wrapper.find(Drawer).childAt(0).childAt(0).type(),
+          Link,
+        );
+
+        assert.strictEqual(
+          wrapper.find(Drawer).childAt(0).childAt(0).prop('to'),
+          '/',
+        );
+
+        assert.equal(
+          wrapper.find(Drawer)
+            .childAt(0)
+            .childAt(0)
+            .childAt(0)
+            .type(),
+          ListItem,
+        );
+
+        assert.equal(
+          wrapper.find(Drawer)
+            .childAt(0)
+            .childAt(0)
+            .childAt(0)
+            .childAt(0)
+            .type(),
+          ListItemIcon,
+        );
+
+        assert.equal(
+          wrapper.find(Drawer)
+            .childAt(0)
+            .childAt(0)
+            .childAt(0)
+            .childAt(0)
+            .childAt(0)
+            .type(),
+          HomeIcon,
+        );
+        // wrapper.find(Drawer);
       },
     );
   },

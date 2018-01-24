@@ -1,6 +1,15 @@
-import ComponentTodoList from './ComponentTodoList';
+import {
+  withStyles,
+} from 'material-ui/styles';
+import ComponentTodoList, {
+  styles,
+} from './ComponentTodoList';
 import reduxContainer from '../../../redux/container';
 
-export default reduxContainer(
-  ComponentTodoList,
+export default withStyles(
+  styles,
+)(
+  reduxContainer(
+    ComponentTodoList,
+  ),
 );

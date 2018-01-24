@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import IconSend from 'material-ui-icons/Send';
-import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 
-const styles = theme => ({
+export const styles = theme => ({
   root: {
     flexGrow: 1,
   },
@@ -301,8 +300,4 @@ ComposedTextField.propTypes = {
   actionSignup: PropTypes.func.isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  ComposedTextField,
-);
+export default ComposedTextField;

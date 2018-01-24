@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
 import Dialog from 'material-ui/Dialog';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
@@ -16,7 +15,7 @@ import Transition from '../../../mui/Component/Transition';
 import ComponentAccountSignin from '../Signin';
 import ComponentAccountSignup from '../Signup';
 
-const styles = {
+export const styles = {
   appBar: {
     position: 'relative',
   },
@@ -144,8 +143,4 @@ FullScreenDialog.propTypes = {
   ).isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  FullScreenDialog,
-);
+export default FullScreenDialog;

@@ -1,3 +1,10 @@
-import TestTab from './TestTab';
+import { withStyles } from 'material-ui/styles';
+import TestTab, {
+  styles,
+} from './TestTab';
 
-export default TestTab;
+export default withStyles(
+  styles,
+)(
+  TestTab,
+);

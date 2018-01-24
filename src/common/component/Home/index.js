@@ -1,4 +1,10 @@
-import ComponentHome from './ComponentHome';
+import { withStyles } from 'material-ui/styles';
+import ComponentHome, {
+  styles,
+} from './ComponentHome';
 
-export default ComponentHome;
-
+export default withStyles(
+  styles,
+)(
+  ComponentHome,
+);

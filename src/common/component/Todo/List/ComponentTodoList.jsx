@@ -2,9 +2,6 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
-import {
-  withStyles,
-} from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import {
   sortBy,
@@ -18,7 +15,7 @@ import {
 } from 'lodash/array';
 import ComponentTodoItem from '../Item';
 
-const styles = (
+export const styles = (
 ) => ({
   root: {
     flexGrow: 1,
@@ -175,8 +172,4 @@ Mycomponent.propTypes = {
   ).isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  Mycomponent,
-);
+export default Mycomponent;
