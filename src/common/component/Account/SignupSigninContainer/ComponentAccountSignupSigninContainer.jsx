@@ -79,7 +79,11 @@ class FullScreenDialog extends React.Component {
             <Link
               to="/"
             >
-              <IconButton color="contrast" onClick={this.handleClose} aria-label="Close">
+              <IconButton
+                color="contrast"
+                onClick={this.handleClose}
+                aria-label="Close"
+              >
                 <IconClose />
               </IconButton>
             </Link>
