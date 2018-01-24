@@ -1,0 +1,61 @@
+
+/* eslint-env mocha */
+import React from 'react';
+import {
+  shallow,
+} from 'enzyme';
+import {
+  assert,
+} from 'chai';
+import ComponentDrawerVariant, {
+  styles,
+} from './ComponentDrawerVariant';
+
+describe(
+  '<ComponentDrawerVariant />',
+  (
+  ) => {
+    it(
+      'Style should be correct',
+      (
+      ) => {
+        assert.deepEqual(
+          styles(
+          ),
+          {
+            root: {
+              width: '100%',
+              maxWidth: 400,
+            },
+            links: {
+              textDecoration: 'none',
+            },
+          },
+        );
+      },
+    );
+
+    it(
+      'Should render correctly',
+      (
+      ) => {
+        const wrapper = shallow(
+          <ComponentDrawerVariant
+            actionUiState={
+              (
+              ) => null
+            }
+            classes={
+              {}
+            }
+            uiState={
+              {
+                stateLdrawerOpen: false,
+              }
+            }
+          />,
+        );
+      },
+    );
+  },
+);
