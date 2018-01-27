@@ -5,6 +5,7 @@
   "main": "src/client/index.js",
   "scripts": {
     "start": "NODE_ENV=production node ./dist/server.js",
+    "test:e2e": "nightwatch",
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha --compilers js:babel-core/register -r mocha.config.js \"./src/**/*.spec.js*\" --exit",
     "getchart": "webpack --config webpack.prod.js --profile --json > stats.json",
     "start:client:dev": "webpack-dev-server --config webpack.dev.js",

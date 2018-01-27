@@ -1,6 +1,13 @@
-import ComponentDrawerVariant from './ComponentDrawerVariant';
+import { withStyles } from 'material-ui/styles';
+import ComponentDrawerVariant, {
+  styles,
+} from './ComponentDrawerVariant';
 import reduxContainer from '../../../redux/container';
 
-export default reduxContainer(
-  ComponentDrawerVariant,
+export default withStyles(
+  styles,
+)(
+  reduxContainer(
+    ComponentDrawerVariant,
+  ),
 );

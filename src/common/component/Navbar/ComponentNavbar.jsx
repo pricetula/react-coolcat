@@ -2,7 +2,6 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -14,7 +13,7 @@ import Menu, {
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import logoImageSrc from '../../../../assets/logo.png';
 
-const styles = theme => (
+export const styles = theme => (
   {
     root: {
       top: 0,
@@ -83,11 +82,13 @@ class Mycomponent extends Component {
     return (
       <div className={classes.root}>
         <AppBar
+          id="app-bar-container"
           className={classes.appBar}
           position="fixed"
         >
           <Toolbar>
             <IconButton
+              id="app-bar-left-button"
               className={classes.menuButton}
               color={classes.textColor}
               aria-label="Menu"
@@ -102,6 +103,7 @@ class Mycomponent extends Component {
             </IconButton>
 
             <Typography
+              id="app-bar-title"
               type="title"
               color={classes.textColor}
               className={classes.flex}
@@ -115,10 +117,11 @@ class Mycomponent extends Component {
             </Typography>
 
             <IconButton
+              id="app-bar-right-button"
               aria-owns={
                 stateSigninSignupOpen
-                  ? 'menu-public'
-                  : 'menu-account'
+                  ? 'app-bar-menu-public'
+                  : 'app-bar-menu-account'
               }
               aria-haspopup="true"
               className={classes.menuButton}
@@ -137,7 +140,7 @@ class Mycomponent extends Component {
             </IconButton>
 
             <Menu
-              id="menu-account"
+              id="app-bar-menu-account"
               anchorEl={anchorEl}
               anchorOrigin={{
                 vertical: 'top',
@@ -170,7 +173,7 @@ class Mycomponent extends Component {
             </Menu>
 
             <Menu
-              id="menu-public"
+              id="app-bar-menu-public"
               anchorEl={anchorEl}
               anchorOrigin={{
                 vertical: 'top',
@@ -205,8 +208,4 @@ Mycomponent.propTypes = {
   ).isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  Mycomponent,
-);
+export default Mycomponent;

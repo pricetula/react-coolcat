@@ -27,7 +27,6 @@ class Mycomponent extends Component {
   ) {
     return (
       <div>
-        <h2>Todo Page</h2>
         <ComponentTodoForm />
         <ComponentTodoList />
         <ComponentAccountSignupSigninContainer />

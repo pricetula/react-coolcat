@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import IconSend from 'material-ui-icons/Send';
-import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 
-const styles = theme => ({
+export const styles = theme => ({
   root: {
     flexGrow: 1,
   },
@@ -25,7 +24,7 @@ const styles = theme => ({
   },
 });
 
-class ComposedTextField extends React.Component {
+class Mycomponent extends React.Component {
   constructor(
     props,
   ) {
@@ -296,13 +295,9 @@ class ComposedTextField extends React.Component {
   }
 }
 
-ComposedTextField.propTypes = {
+Mycomponent.propTypes = {
   classes: PropTypes.object.isRequired,
   actionSignup: PropTypes.func.isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  ComposedTextField,
-);
+export default Mycomponent;
