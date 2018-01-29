@@ -1,13 +1,7 @@
 import React, {
   Component,
 } from 'react';
-import PropTypes, {
-  instanceOf,
-} from 'prop-types';
-import {
-  withCookies,
-  Cookies,
-} from 'react-cookie';
+import PropTypes from 'prop-types';
 import ComponentAccountSignupSigninContainer from '../../Account/SignupSigninContainer';
 import ComponentTodoForm from '../Form';
 import ComponentTodoList from '../List';
@@ -36,12 +30,7 @@ class Mycomponent extends Component {
 }
 
 Mycomponent.propTypes = {
-  cookies: instanceOf(
-    Cookies,
-  ).isRequired,
   actionGetUser: PropTypes.func.isRequired,
 };
 
-export default withCookies(
-  Mycomponent,
-);
+export default Mycomponent;

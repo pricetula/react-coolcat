@@ -2,11 +2,10 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 import Snackbar from 'material-ui/Snackbar';
 
-const styles = theme => (
+export const styles = theme => (
   {
     progress: {
       margin: `0 ${theme.spacing.unit * 2}px`,
@@ -51,11 +50,8 @@ class Mycomponent extends Component {
   render(
   ) {
     const {
-      classes,
       notification: {
         notification,
-        error,
-        warning,
       },
     } = this.props;
 
@@ -99,8 +95,4 @@ Mycomponent.propTypes = {
   ).isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  Mycomponent,
-);
+export default Mycomponent;

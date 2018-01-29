@@ -1,3 +1,10 @@
-import RestStepper from './RestStepper';
+import { withStyles } from 'material-ui/styles';
+import RestStepper, {
+  styles,
+} from './RestStepper';
 
-export default RestStepper;
+export default withStyles(
+  styles,
+)(
+  RestStepper,
+);

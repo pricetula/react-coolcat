@@ -196,6 +196,7 @@ class Mycomponent extends React.Component {
             </InputLabel>
 
             <Input
+              fullWidth
               type="password"
               id="password-helper"
               value={password}
@@ -234,6 +235,7 @@ class Mycomponent extends React.Component {
             </InputLabel>
 
             <Input
+              fullWidth
               type="password"
               id="passwordc-helper"
               value={passwordConfirm}

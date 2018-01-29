@@ -1,19 +1,19 @@
 
 /* eslint-env mocha */
 import React from 'react';
+import {
+  shallow,
+} from 'enzyme';
 import Drawer from 'material-ui/Drawer';
 import { Link } from 'react-router-dom';
 import List, {
   ListItem,
   ListItemIcon,
-  ListItemText,
+  // ListItemText,
 } from 'material-ui/List';
 import HomeIcon from 'material-ui-icons/Home';
 import AssignmentIcon from 'material-ui-icons/Assignment';
 import ExposureIcon from 'material-ui-icons/Exposure';
-import {
-  shallow,
-} from 'enzyme';
 import {
   assert,
 } from 'chai';
@@ -67,27 +67,12 @@ describe(
         );
 
         assert.lengthOf(
-          wrapper.children(
-          ),
+          wrapper.children,
           1,
         );
 
-        assert.equal(
-          wrapper
-            .childAt(
-              0,
-            )
-            .type(
-            ),
-          Drawer,
-        );
-
         assert.deepInclude(
-          wrapper
-            .childAt(
-              0,
-            ).props(
-            ),
+          wrapper.find(Drawer).props(),
           {
             BackdropInvisible: true,
             open: false,
@@ -95,12 +80,7 @@ describe(
         );
 
         assert.lengthOf(
-          wrapper
-            .childAt(
-              0,
-            )
-            .children(
-            ),
+          wrapper.find(Drawer).children,
           1,
         );
 
@@ -117,15 +97,8 @@ describe(
         );
 
         assert.lengthOf(
-          wrapper
-            .childAt(
-              0,
-            )
-            .childAt(
-              0,
-            ).children(
-            ),
-          3,
+          wrapper.childAt(0).childAt(0).children,
+          1,
         );
 
         let count = 0;

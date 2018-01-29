@@ -32,4 +32,3 @@ Mycomponent.propTypes = {
 };
 
 export default Mycomponent;
-

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import classnames from 'classnames';
 import Card, {
   CardHeader,
@@ -18,7 +17,7 @@ import List, {
 } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
-const styles = theme => ({
+export const styles = theme => ({
   media: {
     height: 150,
   },
@@ -191,8 +190,4 @@ Mycomponent.propTypes = {
   listDetail: PropTypes.array.isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  Mycomponent,
-);
+export default Mycomponent;

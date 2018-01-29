@@ -1,3 +1,10 @@
-import CardDetails from './CardDetails';
+import { withStyles } from 'material-ui/styles';
+import CardDetails, {
+  styles,
+} from './CardDetails';
 
-export default CardDetails;
+export default withStyles(
+  styles,
+)(
+  CardDetails,
+);

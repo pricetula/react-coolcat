@@ -14,7 +14,6 @@ import Typography from 'material-ui/Typography';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import ScrollReveal from 'scrollreveal';
-import { withStyles } from 'material-ui/styles';
 import Hidden from 'material-ui/Hidden';
 
 import Banner from './Banner';
@@ -26,7 +25,7 @@ import ImageUIUX from '../../../../assets/uiux.jpg';
 import ImageTest from '../../../../assets/test.jpg';
 import ImageRest from '../../../../assets/rest.png';
 /* eslint-disable */
-const styles = theme => {
+export const styles = theme => {
   console.log(theme);
   return (
     {
@@ -392,8 +391,4 @@ Mycomponent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(
-  styles,
-)(
-  Mycomponent,
-);
+export default Mycomponent;

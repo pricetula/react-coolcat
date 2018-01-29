@@ -1,6 +1,13 @@
-import ComponentAccountSignin from './ComponentAccountSignin';
+import { withStyles } from 'material-ui/styles';
+import ComponentAccountSignin, {
+  styles,
+} from './ComponentAccountSignin';
 import reduxContainer from '../../../redux/container';
 
-export default reduxContainer(
-  ComponentAccountSignin,
+export default withStyles(
+  styles,
+)(
+  reduxContainer(
+    ComponentAccountSignin,
+  ),
 );
