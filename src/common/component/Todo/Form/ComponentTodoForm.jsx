@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import randomstring from 'randomstring';
+import { TimePicker, DatePicker } from 'material-ui-pickers';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import IconSend from 'material-ui-icons/Send';
@@ -12,9 +12,6 @@ import { FormControl, FormHelperText } from 'material-ui/Form';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-  },
-  formControl: {
-    margin: theme.spacing.unit,
   },
   button: {
     margin: theme.spacing.unit,
@@ -39,6 +36,10 @@ class Mycomponent extends React.Component {
       this,
     );
 
+    this.handleChangeDuetime = this.handleChangeDuetime.bind(
+      this,
+    );
+
     this.handleChangeDescription = this.handleChangeDescription.bind(
       this,
     );
@@ -50,29 +51,53 @@ class Mycomponent extends React.Component {
     this.state = {
       item: '',
       description: '',
-      // TODO use a date and time picker
-      dueDate: moment(
-        new Date(
-        ),
-      ).add(
-        randomstring.generate(
-          {
-            length: 2,
-            charset: 'numeric',
-          },
-        ),
-        'm',
-      ).toDate(
+      xDueDate: moment(
+      ).toObject(
       ),
     };
   }
 
   handleChangeDuedate(
-    event,
+    myMoment,
   ) {
+    const oTime = myMoment.toObject(
+    );
+
     this.setState(
       {
-        dueDate: event.target.value,
+        xDueDate: {
+          ...this.state.xDueDate,
+          years: oTime.years,
+          months: oTime.months,
+          date: oTime.date,
+        },
+      },
+    );
+  }
+
+  handleChangeDuetime(
+    myMoment,
+  ) {
+    const oTime = myMoment.toObject(
+    );
+
+    if (
+      moment(
+      ).isSameOrAfter(
+        myMoment,
+      )
+    ) {
+      return;
+    }
+
+    this.setState(
+      {
+        xDueDate: {
+          ...this.state.xDueDate,
+          hours: oTime.hours,
+          minutes: oTime.minutes,
+          seconds: oTime.seconds,
+        },
       },
     );
   }
@@ -106,7 +131,7 @@ class Mycomponent extends React.Component {
 
     const {
       item,
-      dueDate,
+      xDueDate,
       description,
     } = this.state;
 
@@ -117,11 +142,11 @@ class Mycomponent extends React.Component {
       >
         <Grid
           item
-          xs={12}
+          xs={10}
         >
           <FormControl
             style={{
-              width: '90%',
+              width: '100%',
             }}
             className={classes.formControl}
             aria-describedby="todoitem-helper-text"
@@ -149,11 +174,11 @@ class Mycomponent extends React.Component {
 
         <Grid
           item
-          xs={12}
+          xs={10}
         >
           <FormControl
             style={{
-              width: '90%',
+              width: '100%',
             }}
             className={classes.formControl}
             aria-describedby="tododescription-helper-text"
@@ -181,35 +206,43 @@ class Mycomponent extends React.Component {
 
         <Grid
           item
-          xs={12}
+          xs={10}
         >
-          <FormControl
-            style={{
-              width: '90%',
-            }}
-            className={classes.formControl}
-            aria-describedby="tododuedate-helper-text"
-          >
-            <InputLabel
-              htmlFor="tododuedate-helper"
-            >
-              Due Date
-            </InputLabel>
+          <DatePicker
+            fullWidth
+            disablePast
+            keyboard
+            clearable={false}
+            value={
+              moment(
+                xDueDate,
+              ).toDate(
+              )
+            }
+            onChange={this.handleChangeDuedate}
+            animateYearScrolling={false}
+          />
+        </Grid>
 
-            <Input
-              multiline
-              type="datetime-local"
-              id="tododuedate-helper"
-              value={dueDate}
-              onChange={this.handleChangeDuedate}
-            />
-
-            <FormHelperText
-              id="tododuedate-helper-text"
-            >
-              Date and Time to get this Todo item done
-            </FormHelperText>
-          </FormControl>
+        <Grid
+          item
+          xs={10}
+        >
+          <TimePicker
+            fullWidth
+            disablePast
+            keyboard
+            clearable={false}
+            value={
+              moment(
+                xDueDate,
+              ).toDate(
+              )
+            }
+            mask={[/\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
+            placeholder="08:00 AM"
+            onChange={this.handleChangeDuetime}
+          />
         </Grid>
 
         <Grid
@@ -227,8 +260,14 @@ class Mycomponent extends React.Component {
             onClick={
               (
               ) => actionAddTodo(
-                this.state,
-                )
+                {
+                  ...this.state,
+                  dueDate: moment(
+                    this.state.xDueDate,
+                  ).toDate(
+                  ),
+                },
+              )
             }
           >
             Add Todo
