@@ -358,13 +358,18 @@ class HorizontalLinearStepper extends React.Component {
       smaller,
     } = this.props;
 
-    return smaller
+    return this.renderNarrow(
+    );
+  }
+}
+
+/*
+return smaller
       ? this.renderNarrow(
       )
       : this.renderWide(
       );
-  }
-}
+*/
 
 HorizontalLinearStepper.defaultProps = {
   smaller: false,

@@ -137,6 +137,9 @@ class Mycomponent extends React.Component {
     return (
       <Grid
         container
+        direction="row"
+        alignItems="center"
+        justify="center"
         className={classes.root}
       >
         <Grid
@@ -205,6 +208,7 @@ class Mycomponent extends React.Component {
 
         <Grid
           item
+          sm={5}
           xs={10}
         >
           <DatePicker
@@ -225,6 +229,7 @@ class Mycomponent extends React.Component {
 
         <Grid
           item
+          sm={5}
           xs={10}
         >
           <TimePicker
@@ -246,7 +251,10 @@ class Mycomponent extends React.Component {
 
         <Grid
           item
-          xs={12}
+          xs={8}
+          style={{
+            textAlign: 'center',
+          }}
         >
           <Button
             raised
