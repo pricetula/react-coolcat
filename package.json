@@ -41,7 +41,6 @@
     "helmet": "^3.9.0",
     "ignore-styles": "^5.0.1",
     "json-stringify-safe": "^5.0.1",
-    "loadable-components": "^0.4.0",
     "lodash": "^4.17.4",
     "moment": "^2.19.3",
     "mongoose": "^4.13.6",
