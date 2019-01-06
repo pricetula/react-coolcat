@@ -1,8 +1,8 @@
 import App from '../component/App';
 import Home from '../component/Home';
-import Todo from '../component/Todo/Container';
-import Simple from '../component/Simple';
-import Counter from '../component/Counter';
+// import Todo from '../component/Todo/Container';
+// import Simple from '../component/Simple';
+// import Counter from '../component/Counter';
 
 const routes = [
   {
@@ -13,18 +13,18 @@ const routes = [
         exact: true,
         component: Home,
       },
-      {
-        path: '/todo',
-        component: Todo,
-      },
-      {
-        path: '/simple',
-        component: Simple,
-      },
-      {
-        path: '/counter',
-        component: Counter,
-      },
+      // {
+      //   path: '/todo',
+      //   component: Todo,
+      // },
+      // {
+      //   path: '/simple',
+      //   component: Simple,
+      // },
+      // {
+      //   path: '/counter',
+      //   component: Counter,
+      // },
     ],
   },
 ];
